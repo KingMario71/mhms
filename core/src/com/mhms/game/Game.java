@@ -2,32 +2,30 @@ package com.mhms.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mhms.game.objects.Global;
 
 public class Game extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+
+	private static Global global; //object oriented programming allows you to create your own types.
+	
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		global = new Global(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()); //it understnds you are using the new constructor because two inputs.// width of the window that is open //for the global variable. We are setting it up as a new instance of object type golbal.
+	
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+
+	}
+
+	public static Global getGlobal() {
+		return global;
 	}
 }
