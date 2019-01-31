@@ -31,7 +31,14 @@ public class MainMenu extends Menu{
 		Ent buttonStart = new Ent();  // creating a new object called buttonStart
 		buttonStart.setName("buttonStart"); //we are setting a string variable called buttonStart for that object so if we have to find button start, we can search through array list
 		buttonStart.setImg(Game.getGlobal().getImgByName("Start"));
-		buttonStart.setPosBox(new Rectangle(200, 200,buttonStart.getImg().getTex().getWidth(),buttonStart.getImg().getTex().getHeight())); //we are pulling width and height from the user's screen. 
+		buttonStart.setPosBox(new Rectangle(
+				(Game.getGlobal().getDefaultScreenWidth()/2)-50, //accounting for width of image
+				(Game.getGlobal().getDefaultScreenHeight()/2)-25, //accounting for the height of the image
+				
+				100,
+				50));
+				 //we are pulling width and height from the user's screen. 
+		
 		ents.add(buttonStart);
 		this.setEnts(ents);
 		
@@ -44,7 +51,21 @@ public class MainMenu extends Menu{
 	}
 	
 	public void update(float stateTime){
-
+		if (Gdx.input.justTouched()) {
+			Rectangle cursorPosition = new Rectangle();
+			cursorPosition.x = Gdx.input.getX(); // method getX
+			cursorPosition.y = Game.getGlobal().getDefaultScreenHeight()-Gdx.input.getY(); 
+			cursorPosition.width = 1;
+			cursorPosition.height = 1;
+			for (Ent n: getEnts()) {
+				if (cursorPosition.overlaps(n.getPosBox())) {
+					if (n.getName().equals("buttonStart")) { // if the mouse is clicked and the position is anywhere on the entity of the start button
+						Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("game"));
+						Game.getGlobal().setGame(new GameInstance());
+					}
+				}
+			}
+		}
 	}
 	
 	public void buttonSelect(){

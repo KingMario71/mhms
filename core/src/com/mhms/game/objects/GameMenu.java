@@ -40,7 +40,10 @@ public class GameMenu extends Menu{
 	}
 	
 	public void update(float stateTime){
-
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main")); //searching through the menus array list and sratching for "main." and setting that as current menu.
+			Game.getGlobal().setGame(null); //when you hit escape button you delete the game button out.
+		}
 	}
 	
 	public void buttonSelect(){
