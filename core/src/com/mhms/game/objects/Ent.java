@@ -94,7 +94,36 @@ public class Ent {
 	}
 	
 	public void render(SpriteBatch batch){
+		
+		if (this.isDisplay()) {
+			if (this.getColor()!= null)
+				batch.setColor(this.getColor()); // if you set a specific color this will render the image with that color overlayed on it
+			if (this.getImg() != null) {
+				int srcX=0;
+				int srcY=0;
+				int srcWidth=this.getImg().getTex().getWidth();
+				int srcHeight=this.getImg().getTex().getHeight();
 	
+				batch.draw(this.getImg().getTex(),
+						this.getX(),
+						this.getY(),
+						this.getCenterX(),
+						this.getCenterY(),
+						this.getWidth(),
+						this.getHeight(),
+						this.getScaleX(),
+						this.getScaleY(),
+						this.getRotation(),
+						srcX,
+						srcY,
+						srcWidth,
+						srcHeight,
+						this.isFlipX(),
+						this.isFlipY());
+			}
+		}
+		
+		
 	}
 	
 	public void setX(float x){
