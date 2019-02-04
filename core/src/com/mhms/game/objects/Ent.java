@@ -1,5 +1,6 @@
 package com.mhms.game.objects;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +54,7 @@ public class Ent {
 	private boolean display;
 	private int sleepTimer;
 	private State state;
+	private ArrayList<Property> properties;
 	private enum State {
 		HOVER, CLICKED, JUMP, STAND, INJURED, DEAD
 	}
@@ -68,6 +70,7 @@ public class Ent {
 		this.display = true;
 		this.flipX = false;
 		this.flipY = false;
+		properties = new ArrayList<Property>();
 	}
 	
 	public Ent(Ent ent){
@@ -91,6 +94,8 @@ public class Ent {
 		this.flipX = ent.isFlipX();
 		this.flipY = ent.isFlipY();
 		this.selected = ent.isSelected();
+		this.properties = new ArrayList<Property>();
+		this.properties.addAll(ent.getProperties());
 	}
 	
 	public void render(SpriteBatch batch){
@@ -124,6 +129,12 @@ public class Ent {
 		}
 		
 		
+	}
+	
+	public void update(){
+		for(Property property : properties){
+			property.update(this);
+		}
 	}
 	
 	public void setX(float x){
@@ -313,5 +324,16 @@ public class Ent {
 	}
 	public void setRotate(boolean rotate) {
 		this.rotate = rotate;
+	}
+	public ArrayList<Property> getProperties() {
+		return properties;
+	}
+	public void setProperties(ArrayList<Property> properties) {
+		this.properties = properties;
+	}
+	public Property getPropertyByName(String name){
+		for(Property prop : properties)
+			if (prop.getName().equals(name)) return prop;
+		return null;
 	}
 }

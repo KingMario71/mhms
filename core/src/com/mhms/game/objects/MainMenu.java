@@ -61,7 +61,7 @@ public class MainMenu extends Menu{
 				if (cursorPosition.overlaps(n.getPosBox())) {
 					if (n.getName().equals("buttonStart")) { // if the mouse is clicked and the position is anywhere on the entity of the start button
 						Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("game"));
-						Game.getGlobal().setGame(new GameInstance());
+						Game.getGlobal().setGame(new PacGameInstance());
 					}
 				}
 			}
