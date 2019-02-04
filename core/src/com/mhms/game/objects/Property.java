@@ -8,7 +8,7 @@ public class Property {
 		
 	}
 	
-	public static void update(Ent e){
+	public void update(Ent e){
 		
 	}
 

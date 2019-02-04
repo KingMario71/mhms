@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mhms.game.Game;
 import com.mhms.game.objects.properties.PlayerControlProperty;
+import com.mhms.game.utils.GameConstants;
 
 
 /**
@@ -28,7 +29,7 @@ public class PacGameInstance extends GameInstance {
 		pacman = new Player();
 		pacman.setName("pacman");
 		pacman.setImg(Game.getGlobal().getImgByName("pacman-open"));
-		pacman.setPosBox(new Rectangle());
+		pacman.setPosBox(new Rectangle(0,0,GameConstants.BLOCKSIZE,GameConstants.BLOCKSIZE));
 		pacman.getProperties().add(new PlayerControlProperty());
 		
 	}
@@ -41,8 +42,6 @@ public class PacGameInstance extends GameInstance {
 	
 	public void update(){
 		pacman.update();
-		
-	
 	}
 
 	public boolean isPaused() {

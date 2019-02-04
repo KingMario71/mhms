@@ -7,22 +7,18 @@ import com.mhms.game.objects.Property;
 
 public class PlayerControlProperty extends Property{
 
-	public static void update(Ent e){
-		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
+	public void update(Ent e){
+		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
 			e.setX(e.getX()-1);
-			
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
+		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			e.setX(e.getX()+1);
-			
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.UP)) {
+		if(Gdx.input.isKeyPressed(Keys.UP)) {
 			e.setY(e.getY()+1);
-			
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
 			e.setY(e.getY()-1);
-			
 		}
 		
 	}
