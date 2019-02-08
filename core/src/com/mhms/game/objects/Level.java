@@ -2,6 +2,8 @@ package com.mhms.game.objects;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public class Level {
 
 	private String name;
@@ -10,6 +12,12 @@ public class Level {
 	
 	public Level(){
 		this.blocks = new ArrayList<Block>();
+	}
+	
+	public void render(SpriteBatch batch){
+		for(Block b : blocks){
+			b.render(batch);
+		}
 	}
 
 	public String getName() {

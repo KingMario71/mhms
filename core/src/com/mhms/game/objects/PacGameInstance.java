@@ -3,6 +3,7 @@ package com.mhms.game.objects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mhms.game.Game;
+import com.mhms.game.load.LoadLevel;
 import com.mhms.game.objects.properties.PlayerControlProperty;
 import com.mhms.game.utils.GameConstants;
 
@@ -25,17 +26,18 @@ public class PacGameInstance extends GameInstance {
 	private Player pacman;
 	
 	public PacGameInstance(){
-		level = new Level();
+		level = LoadLevel.load("level0");
 		pacman = new Player();
 		pacman.setName("pacman");
 		pacman.setImg(Game.getGlobal().getImgByName("pacman-open"));
-		pacman.setPosBox(new Rectangle(0,0,GameConstants.BLOCKSIZE,GameConstants.BLOCKSIZE));
+		pacman.setPosBox(new Rectangle(70,70,GameConstants.BLOCKSIZE/2,GameConstants.BLOCKSIZE/2));
 		pacman.getProperties().add(new PlayerControlProperty());
 		
 	}
 
 	public void render(SpriteBatch batch){
 		pacman.render(batch);
+		level.render(batch);
 	}
 	
 	int count=0;
@@ -50,4 +52,29 @@ public class PacGameInstance extends GameInstance {
 	public void setPaused(boolean paused) {
 		this.paused = paused;
 	}
+
+	public Level getLevel() {
+		return level;
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
+	}
+
+	public Player getPacman() {
+		return pacman;
+	}
+
+	public void setPacman(Player pacman) {
+		this.pacman = pacman;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 }
