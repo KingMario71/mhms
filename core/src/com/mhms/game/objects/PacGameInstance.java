@@ -24,6 +24,7 @@ public class PacGameInstance extends GameInstance {
 	private boolean paused;
 	private Level level;
 	private Player pacman;
+	private Player ghost;
 	
 	public PacGameInstance(){
 		level = LoadLevel.load("level0");
@@ -31,12 +32,19 @@ public class PacGameInstance extends GameInstance {
 		pacman.setName("pacman");
 		pacman.setImg(Game.getGlobal().getImgByName("pacman-open"));
 		pacman.setPosBox(new Rectangle(70,70,GameConstants.BLOCKSIZE/2,GameConstants.BLOCKSIZE/2));
-		pacman.getProperties().add(new PlayerControlProperty());
+		pacman.getProperties().add(new PlayerControlProperty(1));
+		
+		ghost = new Player();
+		ghost.setName("ghost");
+		ghost.setImg(Game.getGlobal().getImgByName("redghost-left"));
+		ghost.setPosBox(new Rectangle(70,70,GameConstants.BLOCKSIZE/2, GameConstants.BLOCKSIZE/2));
+		ghost.getProperties().add(new PlayerControlProperty(2));
 		
 	}
 
 	public void render(SpriteBatch batch){
 		pacman.render(batch);
+		ghost.render(batch);
 		level.render(batch);
 	}
 	
@@ -44,6 +52,7 @@ public class PacGameInstance extends GameInstance {
 	
 	public void update(){
 		pacman.update();
+		ghost.update();
 	}
 
 	public boolean isPaused() {
@@ -67,6 +76,14 @@ public class PacGameInstance extends GameInstance {
 
 	public void setPacman(Player pacman) {
 		this.pacman = pacman;
+	}
+
+	public Player getGhost() {
+		return ghost;
+	}
+
+	public void setGhost(Player ghost) {
+		this.ghost = ghost;
 	}
 
 	public int getCount() {
